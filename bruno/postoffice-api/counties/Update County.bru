@@ -1,0 +1,40 @@
+meta {
+  name: Update County
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/api/counties/1
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "name": "Pest",
+    "population": 1271000,
+    "logo_url": "https://example.com/logo.png"
+  }
+}
+
+docs {
+  Endpoint: PATCH {{baseUrl}}/api/counties/{id}
+  Update county.
+
+  Auth: Bearer token required.
+  Path param: `id` integer county ID.
+  Body: same fields and validation as Create County.
+
+  Response 200: updated county with `cities_count`.
+  Errors: 401 unauthorized, 404 county not found, 422 validation failure.
+}

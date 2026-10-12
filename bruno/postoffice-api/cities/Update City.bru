@@ -1,0 +1,40 @@
+meta {
+  name: Update City
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/api/cities/1
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "name": "Budapest",
+    "county_id": 1,
+    "population": 1753000
+  }
+}
+
+docs {
+  Endpoint: PATCH {{baseUrl}}/api/cities/{id}
+  Update city.
+
+  Auth: Bearer token required.
+  Path param: `id` integer city ID.
+  Body: same fields and validation as Create City.
+
+  Response 200: updated city with county relation.
+  Errors: 401 unauthorized, 404 city not found, 422 validation failure.
+}

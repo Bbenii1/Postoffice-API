@@ -1,0 +1,25 @@
+meta {
+  name: Get City
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/cities/1
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  Endpoint: GET {{baseUrl}}/api/cities/{id}
+  Return one city with county relation.
+
+  Path param: `id` integer city ID.
+
+  Response 200: `{ "city": {...} }`.
+  Errors: 404 city not found.
+}

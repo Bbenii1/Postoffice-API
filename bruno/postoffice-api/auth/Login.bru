@@ -1,0 +1,38 @@
+meta {
+  name: Login
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/users/login
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "email": "admin@admin.com",
+    "password": "admin"
+  }
+}
+
+docs {
+  Endpoint: POST {{baseUrl}}/api/users/login
+  Authenticate user and create Sanctum bearer token.
+
+  Request body:
+  - `email` string, required, valid email.
+  - `password` string, required.
+
+  Response 200:
+  - `user` authenticated user object.
+  - `token` bearer token. Copy into environment `token`.
+
+  Errors: 422 validation failure, 401 invalid credentials.
+}

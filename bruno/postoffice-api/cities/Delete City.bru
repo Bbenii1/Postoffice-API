@@ -1,0 +1,30 @@
+meta {
+  name: Delete City
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/api/cities/1
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  Endpoint: DELETE {{baseUrl}}/api/cities/{id}
+  Delete city.
+
+  Auth: Bearer token required.
+  Path param: `id` integer city ID.
+
+  Response 200: deletion message and deleted ID.
+  Errors: 401 unauthorized, 404 city not found.
+}

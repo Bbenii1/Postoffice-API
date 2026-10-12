@@ -1,0 +1,29 @@
+meta {
+  name: List Users
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/users
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  Endpoint: GET {{baseUrl}}/api/users
+  List registered users.
+
+  Auth: Bearer token required.
+
+  Response 200: `{ "users": [...] }`.
+  Errors: 401 missing or invalid token.
+}

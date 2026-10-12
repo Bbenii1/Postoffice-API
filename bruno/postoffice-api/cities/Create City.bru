@@ -1,0 +1,43 @@
+meta {
+  name: Create City
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/cities
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "name": "Budapest",
+    "county_id": 1,
+    "population": 1752000
+  }
+}
+
+docs {
+  Endpoint: POST {{baseUrl}}/api/cities
+  Create city.
+
+  Auth: Bearer token required.
+
+  Body:
+  - `name` string, required, max 255.
+  - `county_id` integer, required, existing county.
+  - `population` integer, optional, minimum 0. Defaults to 0.
+
+  Response 201: created city with county relation.
+  Errors: 401 unauthorized, 422 validation failure.
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Search Cities by Name
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/cities?name=Budapest
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  Endpoint: GET {{baseUrl}}/api/cities?name={term}
+  Search cities by name substring.
+
+  Query: `name` string, required for useful filtering.
+
+  Response 200: `{ "cities": [...] }`.
+  Example: `GET /api/cities?name=Budapest`.
+}

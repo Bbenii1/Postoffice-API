@@ -1,0 +1,28 @@
+meta {
+  name: List Cities
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/cities
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  Endpoint: GET {{baseUrl}}/api/cities
+  List cities with county relation.
+
+  Query params:
+  - `name` string, optional. City-name substring filter.
+  - `search` string, optional. Legacy alias for `name`.
+  - `county_id` integer, optional. Filter by county.
+
+  Response 200: `{ "cities": [...] }`.
+  Errors: 422 invalid query values.
+}

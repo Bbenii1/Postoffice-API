@@ -1,0 +1,30 @@
+meta {
+  name: Delete County
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/api/counties/1
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  Endpoint: DELETE {{baseUrl}}/api/counties/{id}
+  Delete county and cascade-delete related cities.
+
+  Auth: Bearer token required.
+  Path param: `id` integer county ID.
+
+  Response 200: deletion message and deleted ID.
+  Errors: 401 unauthorized, 404 county not found.
+}

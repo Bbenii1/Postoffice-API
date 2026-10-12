@@ -1,0 +1,25 @@
+meta {
+  name: Search Counties by Name
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/counties?name=Pest
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  Endpoint: GET {{baseUrl}}/api/counties?name={term}
+  Search counties by name substring.
+
+  Query: `name` string, required for useful filtering.
+
+  Response 200: `{ "counties": [...] }`.
+  Example: `GET /api/counties?name=Pest`.
+}

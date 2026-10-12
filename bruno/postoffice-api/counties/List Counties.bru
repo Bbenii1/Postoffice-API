@@ -1,0 +1,25 @@
+meta {
+  name: List Counties
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/counties
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+docs {
+  Endpoint: GET {{baseUrl}}/api/counties
+  List counties with `cities_count`.
+
+  Query param: `name` string, optional. County-name substring filter.
+
+  Response 200: `{ "counties": [...] }`.
+  Errors: 422 invalid query values.
+}

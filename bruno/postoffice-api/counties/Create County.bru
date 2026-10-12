@@ -1,0 +1,43 @@
+meta {
+  name: Create County
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/counties
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "name": "Pest",
+    "population": 1270000,
+    "logo_url": "https://example.com/logo.png"
+  }
+}
+
+docs {
+  Endpoint: POST {{baseUrl}}/api/counties
+  Create county.
+
+  Auth: Bearer token required.
+
+  Body:
+  - `name` string, required, unique, max 255.
+  - `population` integer, required, minimum 0.
+  - `logo_url` URL, optional, max 500.
+
+  Response 201: created county with `cities_count`.
+  Errors: 401 unauthorized, 422 validation failure.
+}
